@@ -1,0 +1,14 @@
+{
+  "name": "prueba",
+  "version": "1.0.0",
+  "description": "API Hello World y Operaciones",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "WingNg",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

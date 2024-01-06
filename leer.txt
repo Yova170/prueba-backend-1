@@ -1,0 +1,32 @@
+Hola que tal, espero que esten bien!.
+
+
+Sevidor Web
+    Cree el api en un solo mudulo para que vieran como corria con solicutudes en un pgina basica que cree con bottstrap para el diseno y 
+    js para conectar las peticiones al servidor de prueba, si quieren ver los modulos 1 por 1 estan en la carpeta modulos, solo copienlo 
+    a la raiz y listo. para abrir el "Index.html" solo abranlo con el live server de Visual Studio y pongan a correr el archivo  "server.js"
+    y listo veran todo lo que hice.
+
+Como usar
+
+    Problema 2
+    (En num1 y num2 poner los numero para la operaciones.)
+        Suma: '/suma/:num1/:num2' 
+        Resta '/resta/:num1/:num2'
+        Multiplicacion '/mult/:num1/:num2' 
+        Divicion '/div/:num1/:num2' 
+
+    Problema 3
+        Leer datos: Lee los datos automaticamento con la funcion readData()
+        Mostrar Datos: con solo 'http://localhost:3000/rnb' te muestra todos los datos almacenados en el archivo json.
+        Escribir data: Para escibir en el archivo json  se utiliza la funcion writeData()
+        Buscar por id: 'http://localhost:3000/rnb/:id' con esta peticion buscas por id en la base de datos del archivo json
+        Anadir: 'http://localhost:3000/add/:name/:desc/:status' con esta peticion anades datos al archivo json (el id se coloca automaticamente) solo agregando en nombre, descripcion y estado inicial que quieres que tenga la tarea
+        Eliminar: 'http://localhost:3000/del/:id' Se elimina utilizando el id de la tarea que desa eliminar
+        Actulizar: 'http://localhost:3000/act/:id/:name/:desc/:status' pones el id de la tarea que deseas actulizar y los datos a actulizar (el id no se puede camnbiar)
+
+Se que es un poco largo de igual manera en el html pueden ver como funciona.
+
+Eso seria todo, gracias y pasenla bien.
+
+Att. Bryan

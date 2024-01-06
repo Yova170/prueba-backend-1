@@ -1,0 +1,52 @@
+{
+  "rednblue": [
+    {
+      "id": 1,
+      "name": "LS",
+      "location": "Lasssonde",
+      "collaborators": "5"
+    },
+    {
+      "id": 2,
+      "name": "CL",
+      "location": "Cocle",
+      "collaborators": "5"
+    },
+    {
+      "id": 3,
+      "name": "FC",
+      "location": "Francisco Clark",
+      "collaborators": "6"
+    },
+    {
+      "id": 4,
+      "name": "PR",
+      "location": "Calle 3ra",
+      "collaborators": "10"
+    },
+    {
+      "id": 5,
+      "name": "BCT",
+      "location": "Isla Colon",
+      "collaborators": "4"
+    },
+    {
+      "id": 6,
+      "name": "WS",
+      "location": "PanamaWest",
+      "collaborators": "45"
+    },
+    {
+      "id": 7,
+      "name": "BRS",
+      "location": "BarriadaSanjose",
+      "collaborators": "6"
+    },
+    {
+      "id": 8,
+      "name": "Entrgaadavid",
+      "desc": "kekeknfknr",
+      "status": 1
+    }
+  ]
+}

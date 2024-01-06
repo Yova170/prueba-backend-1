@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Bryan Martinez</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <div>
+            <h1 class="text-center">PRUEBA NUMERO 2</h1>
+        </div>
+    </header>
+    <br>
+    <br>
+
+    <div  class="container text-center my-4">
+        <input type="number" id="suma1" placeholder="Número 1">
+        <input type="number" id="suma2" placeholder="Número 2">
+        <input type="submit" value="Sumar" onclick="sumarNumeros()">
+        <div id="resultado1"> . </div>
+    </div>
+    
+    
+    <br>
+      
+    <div  class="container text-center my-4">
+        <input type="number" id="resta1" placeholder="Número 1">
+        <input type="number" id="resta2" placeholder="Número 2">
+        <input type="submit" value="Restar" onclick="restarNumeros()">
+        <div id="resultado2">.</div>
+    </div>
+    
+    <br>
+
+    <div class="container text-center my-4">
+        <input type="number" id="mult1" placeholder="Número 1">
+        <input type="number" id="mult2" placeholder="Número 2">
+        <input type="submit" value="Multiplicar" onclick="multiplicarNumeros()">
+        <div id="resultado3">.</div>
+    </div>
+    
+    <br>
+
+    <div class="container text-center my-4">
+        <input type="number" id="div1" placeholder="Número 1">
+        <input type="number" id="div2" placeholder="Número 2">
+        <input type="submit" value="Dividir" onclick="dividirNumeros()">
+        <div id="resultado4">.</div>
+    </div>
+    
+    <div class="d-flex justify-content-center"  style="margin-top: 50px;">
+        <button type="button" class="btn btn-primary" style="margin: 2 15px;" onclick="back()">Volver</button>
+      </div>
+
+
+  <script>
+
+    //Funcion para consular suma al servidor
+    function sumarNumeros() {
+
+      const numero1 = document.getElementById('suma1').value;
+      const numero2 = document.getElementById('suma2').value;
+
+      const url = `http://localhost:3000/suma/${numero1}/${numero2}`;
+
+      fetch(url)
+        .then(response => response.text())
+        .then(result => {
+          document.getElementById('resultado1').innerText = result;
+        });
+    }
+
+    //Funcion para consular resta al servidor
+    function restarNumeros() {
+
+        const numero1 = document.getElementById('resta1').value;
+        const numero2 = document.getElementById('resta2').value;
+
+        const url = `http://localhost:3000/resta/${numero1}/${numero2}`;
+
+        fetch(url)
+        .then(response => response.text())
+            .then(result => {
+                document.getElementById('resultado2').innerText = result;
+        });
+    }
+
+    //Funcion para consular multiplicacion al servidor
+    function multiplicarNumeros() {
+
+        const numero1 = document.getElementById('mult1').value;
+        const numero2 = document.getElementById('mult2').value;
+
+        const url = `http://localhost:3000/mult/${numero1}/${numero2}`;
+
+        fetch(url)
+        .then(response => response.text())
+            .then(result => {
+                document.getElementById('resultado3').innerText = result;
+        });
+    }
+    
+    //Funcion para consular divicion al servidor
+    function dividirNumeros() {
+
+        const numero1 = document.getElementById('div1').value;
+        const numero2 = document.getElementById('div2').value;
+
+        const url = `http://localhost:3000/div/${numero1}/${numero2}`;
+
+        fetch(url)
+        .then(response => response.text())
+            .then(result => {
+                document.getElementById('resultado4').innerText = result;
+        });
+    }
+    
+    //funcion para volver al menu
+    function back() {
+        window.location.href = "index.html";
+    }
+  </script>
+ 
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bryan Martinez</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body class="bg-light">
+    <header>
+        <div>
+            <h1 class="text-center">PRUEBA NUMERO 3</h1>
+        </div>
+    </header>
+
+    <div class="container my-4">
+        <h2>Tabla de Tareas RednBlue</h2>
+
+        <button type="button" class="btn btn-primary" style="margin: 2 15px;" onclick="back()">Volver</button>
+        
+        <button id="btnAgregar" class="btn btn-info" onclick="Formulario()">Agregar</button>
+
+        <div id="agregar" style="display: none;">
+            <form id="formulario">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <br>
+                <label for="descripcion">Descripción:</label>
+                <input type="text" id="descripcion" name="descripcion" required>
+                <br>
+                <label for="estado">Estado:</label>
+                <input type="text" id="estado" name="estado" required>
+                <br>
+                <button type="button" class="btn btn-success" onclick="agregarTarea()">Agregar Tarea</button>
+                <button type="button" class="btn btn-danger" onclick="cerrarFormulario()">Cerrar</button>
+            </form>
+        </div>
+
+        <div id="act" style="display: none;">
+            <form id="formulario">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <br>
+                <label for="descripcion">Descripción:</label>
+                <input type="text" id="descripcion" name="descripcion" required>
+                <br>
+                <label for="estado">Estado:</label>
+                <input type="text" id="estado" name="estado" required>
+                <br>
+                <button type="button" onclick="agregarTarea()">Agregar Tarea</button>
+                <button type="button" onclick="cerrarFormulario()">Cerrar</button>
+            </form>
+        </div>
+
+        <table class="table container my-4">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tablaDatosBody"></tbody>
+        </table>
+    </div>
+
+    <style>
+    #formact {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #formulario {
+        text-align: center;
+    }
+
+    #formulario label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    #formulario input,
+    #formulario select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    #formulario button {
+        padding: 8px 16px;
+        margin-right: 10px;
+    }
+</style>
+
+    <div id="formact"class="" style="display: none;">
+        <form id="formulario">
+            <label for="ID">ID:</label>
+            <input type="text" id="ida" name="id" readonly>
+            <br>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombrea" name="nombre" required>
+            <br>
+            <label for="descripcion">Descripción:</label>
+            <input type="text" id="descripciona" name="descripcion" required>
+            <br>
+            <label for="estado">Estado:</label>
+            <input type="text" id="estadoa" name="estado" required>
+            <br>
+            <button type="button" class="btn btn-success" onclick="actualizarTarea()">Actualizar Tarea</button>
+            <button type="button" class="btn btn-danger" onclick="cerraract()">Cerrar</button>
+        </form>
+    </div>
+
+    <script>
+        //Funcion para leer los datos del servidor
+        async function Datos() {
+            try {
+                const response = await fetch('http://localhost:3000/rnb');
+                const data = await response.json();
+                Tabla(data);
+            } catch (error) {
+                console.error('Error al cargar los datos:', error);
+            }
+        }
+
+        //Funcion para pasar los datos a la tabla
+        function Tabla(data) {
+            const tablaBody = document.getElementById('tablaDatosBody');
+            tablaBody.innerHTML = '';
+
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${item.id || ''}</td>
+                                <td>${item.name || ''}</td>
+                                <td>${item.desc || ''}</td>
+                                <td>${item.status || ''}</td>
+                                <td>
+                                    <button class="btn btn-danger" onclick="eliminar(this, ${item.id})">Eliminar</button>
+                                    <button id="btnAgregar" class="btn btn-primary" onclick="act(this, ${item.id})">Actualizar</button>  </td>
+                                </td>`;
+                tablaBody.appendChild(row);
+            });
+        }
+
+        //Funcion para mandar peticion de eliminar tarea a servidor
+        async function eliminar(boton, id) {
+            const confirmacion = confirm("¿Estás seguro de que deseas eliminar este elemento?");
+            if (confirmacion) {
+                try {
+                    const fila = boton.closest('tr');
+                    const response = await fetch(`http://localhost:3000/del/${id}`, {
+                        method: 'GET'
+                    });
+                    if (response.ok) {
+                        fila.remove();
+                    } else {
+                        console.error('Error al eliminar la fila en el servidor.');
+                    }
+                } catch (error) {
+                    console.error('Error al comunicarse con el servidor:', error);
+                }
+            }
+        }
+
+        //Funcion para poner ivisible el formulario de anadir tarea
+        async function Formulario() {
+            document.getElementById('agregar').style.display = 'block';
+        }
+
+        //Funcion para poner Cerrar el formulario de anadir tarea
+        function cerrarFormulario() {
+            document.getElementById('agregar').style.display = 'none';
+        }
+
+        //Funcion para anadir tareas
+        async function agregarTarea() {
+            const nombre = document.getElementById('nombre').value;
+            const descripcion = document.getElementById('descripcion').value;
+            const estado = document.getElementById('estado').value;
+
+            const response = await fetch(`http://localhost:3000/add/${nombre}/${descripcion}/${estado}`, {
+                method: 'GET'
+            });
+            if (response.ok) {
+                cerrarFormulario();
+                cargarDatos();
+            } else {
+                console.error('Error al agregar tarea en el servidor.');
+            }}
+
+        //Funcion para mostrar formulario de anadir y agarrar id de la tabla y hacer peticion al server para que me mande los datos y ponerlos en labels para poder actualizar
+        async function act(button, taskId) {
+            
+            document.getElementById('formact').style.display = 'block';
+
+            const response = await fetch(`http://localhost:3000/rnb/${taskId}`);
+            const data = await response.json();
+
+            document.getElementById("ida").value = data.id;
+            document.getElementById("nombrea").value = data.name;
+            document.getElementById("descripciona").value = data.desc;
+            document.getElementById("estadoa").value = data.status;
+          
+}
+
+        //Funcion para poner cerrar el formulario de actulizar
+        function cerraract(){
+            document.getElementById('formact').style.display = 'none';
+        }
+        
+        //Funcion para actulizar las tareas del servidor 
+        async function actualizarTarea() {
+            const id = document.getElementById('ida').value;
+            const nombre = document.getElementById('nombrea').value;
+            const descripcion = document.getElementById('descripciona').value;
+            const estado = document.getElementById('estadoa').value;
+
+            const response = await fetch(`http://localhost:3000/act/${id}/${nombre}/${descripcion}/${estado}`, {
+                method: 'GET'
+            })
+        }
+        
+        //Funcion para volver al Menu
+        function back() {
+        window.location.href = "index.html";
+        }
+
+        //mostrar funcion de Tablas
+        Datos();
+    </script>
+</body>
+</html>

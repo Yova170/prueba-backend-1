@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "name": "prueba-backend-1",
+  "description": "Bienvenido a nuestra prueba técnica de backend.  La intención de esta prueba es evaluar tu capacidad para aprender y aplicar conceptos nuevos en un lenguaje ya conocido.  Recuerda, no estamos buscando perfección, sino tu habilidad para resolver problemas y tu disposición para aprender.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

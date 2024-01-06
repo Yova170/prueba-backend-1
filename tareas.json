@@ -1,0 +1,46 @@
+{
+  "rednblue": [
+    {
+      "id": 1,
+      "name": "Entrega a david",
+      "desc": "Entrga de pedidos 1234 a David",
+      "status": "Cerrado"
+    },
+    {
+      "id": 2,
+      "name": "Entrega a cocle",
+      "desc": "Entrga de pedidos 01029 a cocle.",
+      "status": "Cerrado"
+    },
+    {
+      "id": 3,
+      "name": "Entrega a Bocas",
+      "desc": "Entrga de pedidos a bocas para esta semana.",
+      "status": "Abierto"
+    },
+    {
+      "id": 4,
+      "name": "Entrega a Santiago",
+      "desc": "Entrga de pedidos a Santiago",
+      "status": "En Proceso"
+    },
+    {
+      "id": 5,
+      "name": "Entrega a Panama Este",
+      "desc": "Entrga de pedidos a Panama ",
+      "status": "En Proceso"
+    },
+    {
+      "id": 6,
+      "name": "Pedidos a China",
+      "desc": "Hacer pedidos a china por medio de buque",
+      "status": "Cerrado"
+    },
+    {
+      "id": 7,
+      "name": "Nuevas Contrataciones",
+      "desc": "Para el area de atencion al cliente en david y boquete",
+      "status": "Abierto"
+    }
+  ]
+}
